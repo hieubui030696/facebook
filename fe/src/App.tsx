@@ -18,7 +18,7 @@ function App() {
   }
 
   async function call1() {
-    for (let i = 1; i <= 2000; i++) {
+    for (let i = 1; i <= 1000; i++) {
       const response = axios.get('http://localhost:8080/auth/get-profile', {
         params: {
           userId: 100000

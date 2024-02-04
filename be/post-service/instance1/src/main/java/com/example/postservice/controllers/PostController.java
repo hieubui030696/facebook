@@ -37,24 +37,31 @@ public class PostController {
 
     @GetMapping("/get-list-posts")
     public List<Map<String, Object>> getListPost(@RequestParam String userId) {
-        List<Map<String, Object>> listResponse = postRepository.getListPost(userId);
-        Set<Long> listUserComment = listResponse.stream().map(x -> Long.parseLong(x.get("user_id_comment").toString())).collect(Collectors.toSet());
-        Map<String, Set<Long>> setMap = new HashMap<>();
-        setMap.put("listUserId", listUserComment);
-        List<UserDTO> userDTOS = userServiceClient.getListUser(setMap);
-        listResponse = listResponse.stream().map(x -> {
-            Map<String, Object> clonedMap = new HashMap<>(x);
+//        List<Map<String, Object>> listResponse = postRepository.getListPost(userId);
+//        Set<Long> listUserComment = listResponse.stream().map(x -> Long.parseLong(x.get("user_id_comment").toString())).collect(Collectors.toSet());
+//        Map<String, Set<Long>> setMap = new HashMap<>();
+//        setMap.put("listUserId", listUserComment);
+//        List<UserDTO> userDTOS = userServiceClient.getListUser(setMap);
+//        listResponse = listResponse.stream().map(x -> {
+//            Map<String, Object> clonedMap = new HashMap<>(x);
+//
+//            for (UserDTO userDTO : userDTOS) {
+//                if (Long.valueOf(x.get("user_id_comment").toString()).equals(userDTO.getId())) {
+//                    clonedMap.put("user_comment", userDTO);
+//                    clonedMap.remove("user_id_comment");
+//                    break;
+//                }
+//            }
+//
+//            return clonedMap;
+//        }).toList();
+//
+//        return listResponse;
 
-            for (UserDTO userDTO : userDTOS) {
-                if (Long.valueOf(x.get("user_id_comment").toString()).equals(userDTO.getId())) {
-                    clonedMap.put("user_comment", userDTO);
-                    clonedMap.remove("user_id_comment");
-                    break;
-                }
-            }
 
-            return clonedMap;
-        }).toList();
+
+
+        List<Map<String, Object>> listResponse = new ArrayList<>();
 
         return listResponse;
     }
